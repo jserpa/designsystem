@@ -350,7 +350,7 @@ h2 { font-size: 27px; }
 .build-header { display:flex; align-items:center; justify-content:space-between; padding:18px 26px; border-bottom:1px solid #e2e1db; } .build-brand { display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; } .build-brand small { font-weight:400; color:#777; }
 .build-close { border:0; background:transparent; color:#333; font-size:28px; cursor:pointer; } .build-close:focus-visible { outline:2px solid #d43328; }
 .build-intro { padding:24px 30px 12px; } .build-intro h2 { margin:8px 0; font-size:29px; } .build-intro p { margin:0; color:#666663; font-size:14px; }
-.build-stage { flex:1; min-height:390px; margin:10px 30px 24px; border:1.5px solid #c8c7bf; border-radius:8px 12px 7px 10px; background-color:#fffefa; background-image:radial-gradient(#dbdad2 1px,transparent 1px); background-size:20px 20px; display:grid; place-items:center; padding:26px; overflow:auto; }
+.build-stage { flex:1; min-height:390px; margin:10px 30px 24px; border:0; background:transparent; display:grid; place-items:center; padding:0; overflow:auto; }
 .build-visual { width:100%; display:flex; justify-content:center; align-items:center; } .build-visual .browser { width:min(100%,690px); } .build-visual .theme-examples { width:min(100%,720px); }
 .build-visual .themed-cart { width:min(100%,690px); } .build-visual .themed-cart .browser { width:100%; height:370px; } .build-visual .themed-cart .browser-body { padding:26px 32px; } .build-visual .themed-cart .cart-price { display:block; }
 .build-footer { display:flex; justify-content:space-between; align-items:center; gap:14px; padding:16px 30px 22px; } .build-footer > div:last-child { display:flex; gap:9px; } .build-progress { display:flex; gap:7px; } .build-progress span { width:24px; height:4px; border-radius:4px; background:#d7d5cf; } .build-progress span.active { background:#d43328; }
@@ -362,7 +362,7 @@ h2 { font-size: 27px; }
 @keyframes build-component-in { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 @media(prefers-reduced-motion:reduce) { .build-components .cart-product-placeholder,.build-components .cart-row,.build-components .cart-summary { animation:none; } }
 
-.build-page { width:min(100%,690px); height:370px; background:#fff; border:1.5px solid #a4a39b; border-radius:8px 11px 7px 9px; box-shadow:3px 4px 0 #e6e4dc; overflow:hidden; }
+.build-page { width:100%; height:clamp(370px,48vh,520px); background:#fff; border:1.5px solid #a4a39b; border-radius:8px 11px 7px 9px; box-shadow:3px 4px 0 #e6e4dc; overflow:hidden; }
 .build-page-top { height:34px; background:#f5f4ef; border-bottom:1px solid #d2d1ca; transition:background .5s; }
 .build-page-top span { opacity:0; color:#fff; font-size:13px; font-weight:700; line-height:34px; padding-left:15px; transition:opacity .4s; }
 .build-page-inner { height:calc(100% - 34px); position:relative; padding:22px 28px; }
@@ -476,6 +476,20 @@ h2 { font-size: 27px; }
 .visual:has(.overview-reference) { min-height:760px; }
 @media(max-width:760px) { .visual:has(.overview-reference) { min-height:480px; } }
 
+.comparison-wrap { position:relative; width:min(100%,950px); padding-top:96px; }
+.comparison-marker { position:absolute; z-index:3; top:43px; bottom:0; left:38%; border-left:2px dotted #000; pointer-events:none; opacity:0; transform:scaleY(0); transform-origin:top; animation:marker-appear .8s ease-out 6s forwards; }
+@keyframes marker-appear { to { opacity:1; transform:scaleY(1); } }
+.comparison-timeline { position:absolute; top:55px; left:0; right:0; height:2px; background:#c7b9b1; }
+.timeline-label { position:absolute; top:8px; color:#55544e; font:600 11px/1.3 "Helvetica Neue",sans-serif; }
+.timeline-label-start { left:0; } .timeline-label-end { right:0; }
+.comparison-progress { position:absolute; left:0; top:0; height:100%; width:38%; background:#d43328; animation:progress-journey 6s ease-in-out both; }
+@keyframes progress-journey { 0%, 40%, 80% { width:105px; } 20%, 60% { width:calc(100% - 105px); } 100% { width:38%; } }
+.comparison-timeline::before,.comparison-timeline::after { content:""; position:absolute; top:50%; width:8px; height:8px; border:2px solid #d43328; border-radius:50%; background:#fffaf6; transform:translateY(-50%); }
+.comparison-timeline::before { left:0; } .comparison-timeline::after { right:0; }
+.comparison-position { position:absolute; top:0; left:38%; transform:translateX(-50%); z-index:2; white-space:nowrap; padding:8px 12px; border:1px solid #d43328; border-radius:5px 8px 6px 7px; background:#fffaf6; box-shadow:2px 2px 0 #e6ddd8; color:#a52d24; font:600 12px/1.3 "Helvetica Neue",sans-serif; animation:position-journey 6s ease-in-out both; }
+.comparison-position::after { content:""; position:absolute; left:50%; bottom:-6px; width:10px; height:10px; background:#fffaf6; border-right:1px solid #d43328; border-bottom:1px solid #d43328; transform:translateX(-50%) rotate(45deg); }
+@keyframes position-journey { 0%, 40%, 80% { left:105px; } 20%, 60% { left:calc(100% - 105px); } 100% { left:38%; } }
+@media (prefers-reduced-motion:reduce) { .comparison-position,.comparison-progress { animation:none; } .comparison-marker { animation:none; opacity:1; transform:none; } }
 /* Editable whiteboard comparison: wireframes, connectors, and labels. */
 .comparison-diagram { display:grid; grid-template-columns:1fr 1fr; width:min(100%,950px); min-height:620px; background:#f8f7f3; color:#22262b; font-family:"Helvetica Neue",Arial,sans-serif; }
 .diagram-half { min-width:0; padding:22px 20px; } .diagram-fragmented { background:#efede7; } .diagram-unified { background:#f8f8f5; }
@@ -502,6 +516,46 @@ h2 { font-size: 27px; }
 .diagram-connectors path:not(marker path) { fill:none; stroke:#d87b5f; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:7 6; marker-end:url(#broken-arrow); vector-effect:non-scaling-stroke; }
 .diagram-scatter .wire { z-index:2; } .diagram-label { z-index:3; background:#efede7; padding:2px 4px; border-radius:3px; }
 
+/* Build the explanation, then the fragmented and unified columns. */
+@keyframes draw-in { from { opacity:0; clip-path:inset(0 100% 0 0); } to { opacity:1; clip-path:inset(0 -10px -10px -10px); } }
+.explain:has(.overview-details:not([hidden])) > .phase,.explain:has(.overview-details:not([hidden])) > h2,.explain:has(.overview-details:not([hidden])) > .description,.overview-details:not([hidden]) p,.explain:has(.overview-details:not([hidden])) > .connection,.comparison-diagram .diagram-half h3,.comparison-diagram .wire,.comparison-diagram .unified-wire,.comparison-diagram .diagram-label,.comparison-diagram .diagram-connectors,.diagram-unified-content::before { animation:draw-in .55s ease-out both; }
+.explain:has(.overview-details:not([hidden])) > h2 { animation-delay:.15s; }
+.explain:has(.overview-details:not([hidden])) > .description { animation-delay:.3s; }
+.overview-details:not([hidden]) p:nth-child(1) { animation-delay:.45s; }
+.overview-details:not([hidden]) p:nth-child(2) { animation-delay:.6s; }
+.overview-details:not([hidden]) p:nth-child(3) { animation-delay:.75s; }
+.explain:has(.overview-details:not([hidden])) > .connection { animation-delay:.9s; }
+.comparison-diagram .diagram-fragmented h3 { animation-delay:1.4s; }
+.comparison-diagram .wire-a,.comparison-diagram .wire-b { animation-delay:1.7s; }
+.comparison-diagram .wire-c,.comparison-diagram .wire-d { animation-delay:2.1s; }
+.comparison-diagram .wire-e,.comparison-diagram .wire-f { animation-delay:2.5s; }
+.comparison-diagram .diagram-connectors { animation-delay:2.9s; }
+.comparison-diagram .diagram-label { animation-delay:3.2s; }
+.comparison-diagram .diagram-unified h3 { animation-delay:3.7s; }
+.comparison-diagram .wire-hero { animation-delay:4s; }
+.comparison-diagram .unified-row:nth-child(2) .unified-wire { animation-delay:4.4s; }
+.comparison-diagram .unified-row:nth-child(3) .unified-wire { animation-delay:4.8s; }
+.comparison-diagram .unified-row:nth-child(4) .unified-wire { animation-delay:5.2s; }
+.diagram-unified-content::before { animation-delay:5.6s; }
+@media (prefers-reduced-motion:reduce) { .explain:has(.overview-details:not([hidden])) > *, .overview-details:not([hidden]) p,.comparison-diagram .diagram-half h3,.comparison-diagram .wire,.comparison-diagram .unified-wire,.comparison-diagram .diagram-label,.comparison-diagram .diagram-connectors,.diagram-unified-content::before { animation:none; } }
+
+/* Each step introduces its explanation before assembling the visual. */
+.explain.step-building:not(:has(.overview-details:not([hidden]))) > .phase,.explain.step-building:not(:has(.overview-details:not([hidden]))) > h2,.explain.step-building:not(:has(.overview-details:not([hidden]))) > .description,.explain.step-building .theme-details:not([hidden]) p,.explain.step-building:not(:has(.overview-details:not([hidden]))) > .connection { animation:draw-in .5s ease-out both; }
+.explain.step-building > h2 { animation-delay:.15s !important; }
+.explain.step-building > .description { animation-delay:.3s !important; }
+.explain.step-building .theme-details:not([hidden]) p:nth-child(1) { animation-delay:.45s; }
+.explain.step-building .theme-details:not([hidden]) p:nth-child(2) { animation-delay:.6s; }
+.explain.step-building .theme-details:not([hidden]) p:nth-child(3) { animation-delay:.75s; }
+.explain.step-building > .connection { animation-delay:.9s !important; }
+.scene .token-callout-list .token-callout,.scene .token-set .token,.scene .token-example,.scene .theme-example,.scene .theme-code,.scene .component-callout,.scene .component,.scene .responsive-grid-row,.scene .responsive-grids > p,.scene .browser { animation:draw-in .55s ease-out both; animation-delay:1.4s; }
+.scene .token-set .token:nth-child(2),.scene .theme-example:nth-child(2),.scene .component:nth-child(2),.scene .responsive-grid-row:nth-child(2),.scene .token-callout:nth-child(2) { animation-delay:1.7s; }
+.scene .token-set .token:nth-child(3),.scene .theme-example:nth-child(3),.scene .component:nth-child(3),.scene .responsive-grid-row:nth-child(3),.scene .token-callout:nth-child(3) { animation-delay:2s; }
+.scene .token-set .token:nth-child(4),.scene .theme-example:nth-child(4),.scene .component:nth-child(4) { animation-delay:2.3s; }
+.scene .token-set .token:nth-child(5),.scene .component:nth-child(5) { animation-delay:2.6s; }
+.scene .token-set .token:nth-child(6),.scene .token-example,.scene .theme-code,.scene .component-callouts-bottom .component-callout,.scene .responsive-grids > p { animation-delay:2.9s; }
+.scene .browser-top,.scene .browser-body > *,.scene .cart-product-placeholder,.scene .cart-heading,.scene .cart-row,.scene .cart-summary,.scene .cart-variant-section { animation:draw-in .5s ease-out 1.9s both; }
+.scene .cart-heading,.scene .cart-row:nth-of-type(3) { animation-delay:2.2s; } .scene .cart-row:nth-of-type(4),.scene .cart-summary { animation-delay:2.5s; } .scene .cart-variant-section { animation-delay:2.8s; }
+@media (prefers-reduced-motion:reduce) { .scene .browser * { animation:none !important; } .explain.step-building > *, .explain.step-building .theme-details p,.scene .token-callout-list .token-callout,.scene .token-set .token,.scene .token-example,.scene .theme-example,.scene .theme-code,.scene .component-callout,.scene .component,.scene .responsive-grid-row,.scene .responsive-grids > p,.scene .browser { animation:none !important; } }
 </style>
 </head>
 <body>
@@ -581,7 +635,7 @@ const steps = [
     description: "A design system brings shared patterns together so teams can build more consistent, connected experiences.",
     connectionTitle: "The building blocks",
     connection: "Explore how tokens, themes, components, grids, and templates come together to create a page.",
-    visual: `<div class="comparison-diagram" role="img" aria-label="A fragmented system with errors and broken flows compared with a unified platform of consistent designs, aligned components, structured layouts, and seamless flows.">
+    visual: `<div class="comparison-wrap"><div class="comparison-position">We are here on our journey</div><div class="comparison-marker" aria-hidden="true"></div><div class="comparison-timeline"><div class="comparison-progress"></div><span class="timeline-label timeline-label-start">Fragmented system</span><span class="timeline-label timeline-label-end">Unified platform</span></div><div class="comparison-diagram" role="img" aria-label="A fragmented system with errors and broken flows compared with a unified platform of consistent designs, aligned components, structured layouts, and seamless flows.">
       <section class="diagram-half diagram-fragmented"><h3>Fragmented system</h3><div class="diagram-scatter">
         <div class="wire wire-a"><b>Error</b><i></i><i></i><i></i><div class="wire-actions"><span></span><span></span></div></div>
         <div class="wire wire-b"><div class="wire-bar">☰ <span>— &nbsp; — &nbsp; —</span></div><b>Error</b><i></i><i></i><i></i><div class="wire-placeholder"></div><div class="wire-actions"><span></span><span></span></div></div>
@@ -596,7 +650,7 @@ const steps = [
         <div class="unified-row"><div class="unified-wire unified-main"><b>Aligned components</b><div class="unified-cards"><div><span></span><i></i><i></i><em></em></div><div><span></span><i></i><i></i><em></em></div><div><span></span><i></i><i></i><em></em></div><div><span></span><i></i><i></i><em></em></div></div></div><div class="unified-wire unified-side"><i></i><i></i><i></i><hr><i></i><i></i><em></em></div></div>
         <div class="unified-row"><div class="unified-wire unified-main"><b>Structured layout</b><div class="unified-layout"><div class="unified-rail"><i></i><i></i><i></i><i></i></div><div class="unified-layout-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div></div></div><div class="unified-wire unified-side"><i></i><div class="unified-list"><span>☐ ━</span><span>☐ ━</span><span>☐ ━</span></div></div></div>
         <div class="unified-row"><div class="unified-wire unified-main"><b>Seamless flow</b><div class="unified-flow"><div><span></span><i></i><i></i><em></em></div><strong>→</strong><div><span></span><i></i><i></i><em></em></div><strong>→</strong></div></div><div class="unified-wire unified-side"><i></i><div class="wire-actions vertical"><span></span><span></span><span></span></div><em></em></div></div>
-      </div></section></div>`
+      </div></section></div></div>`
   },
   {
     label: "Shared design decisions",
@@ -698,6 +752,10 @@ let timer = null;
 const $ = id => document.getElementById(id);
 function render() {
   const s = steps[current];
+  const explanation = document.querySelector(".explain");
+  explanation.classList.remove("step-building");
+  void explanation.offsetWidth;
+  explanation.classList.add("step-building");
   $("phase").textContent = `Step ${current + 1} of ${steps.length}`;
   $("heading").textContent = s.title;
   $("description").textContent = s.description;
