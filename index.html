@@ -38,7 +38,7 @@
     border-radius: 14px;
     box-shadow: 0 12px 36px #173d5910;
   }
-  .step-nav { display: grid; grid-template-columns: repeat(6, 1fr); border-bottom: 1px solid var(--line); }
+  .step-nav { display: grid; grid-template-columns: repeat(7, 1fr); border-bottom: 1px solid var(--line); }
   .step {
     appearance: none;
     display: flex;
@@ -255,7 +255,7 @@ h2 { font-size: 27px; }
 @media(max-width:760px) { .cart-layout { gap:6px; grid-template-columns:repeat(12,minmax(0,1fr)); } .cart-image { flex-basis:28px; height:36px; } .cart-row { gap:4px; } .cart-price { display:none; } .cart-summary { padding:8px; } }
 
 
-.theme-examples { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; width:min(100%,760px); }
+.theme-examples { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; width:min(100%,760px); }
 .theme-example { background:#fff; border:2px solid #55544e; border-radius:8px 12px 7px 10px; padding:14px; box-shadow:3px 4px 0 #e6e4dc; text-align:center; }
 .theme-example:nth-child(2) { border-radius:11px 6px 10px 5px; }
 .theme-header { padding:11px 12px; color:#fff; text-align:left; font-weight:600; border-radius:5px 8px 5px 7px; }
@@ -408,11 +408,104 @@ h2 { font-size: 27px; }
 .build-checkout { border:1px solid #222; border-radius:5px 9px 5px 8px / 7px 5px 9px 6px; box-shadow:2px 2px 0 #d7d4cb; }
 .build-variant { border-width:1.5px; border-radius:5px 10px 6px 8px; box-shadow:2px 2px 0 #eaded8; }
 
+
+.responsive-grids { width:min(100%,760px); padding:22px; background:#fff; border:2px solid #55544e; border-radius:8px 12px 7px 10px; box-shadow:3px 4px 0 #e6e4dc; }
+.responsive-grid-row + .responsive-grid-row { margin-top:15px; } .responsive-grid-row strong { display:block; margin-bottom:8px; color:#252525; font-size:14px; }
+.responsive-grid-columns { display:grid; grid-template-columns:repeat(var(--columns),minmax(0,1fr)); gap:4px; }
+.responsive-grid-columns span { display:grid; place-items:center; height:55px; border:1px solid #d4332845; border-radius:3px 5px 3px 4px; background:#f5dedb; color:#a52720; font-size:10px; }
+.responsive-grid-row:first-child .responsive-grid-columns span { height:65px; }
+.responsive-grids p { margin:15px 0 0; font-size:12px; color:#77766f; }
+@media(max-width:760px) { .responsive-grids { padding:13px; } .responsive-grid-row strong { font-size:12px; } .responsive-grid-columns { gap:3px; } .responsive-grid-columns span { height:42px; font-size:8px; } .responsive-grid-row:first-child .responsive-grid-columns span { height:50px; } .responsive-grids p { font-size:10px; } }
+
+
+.component-showcase { width:min(100%,760px); display:flex; flex-direction:column; gap:24px; }
+.component-showcase .components { gap:20px; } .component-showcase .component { width:min(27%,180px); min-width:0; }
+.component-callouts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.component-callout { position:relative; padding:10px 12px; border:1px solid #d43328; border-radius:5px 8px 6px 7px; background:#fffaf6; box-shadow:2px 2px 0 #e6ddd8; color:#55554f; font:11px/1.4 "Helvetica Neue",sans-serif; }
+.component-callout strong { display:block; margin-bottom:3px; color:#a52d24; font-size:10px; }
+.component-callout::after { content:""; position:absolute; left:28px; width:10px; height:10px; background:#fffaf6; transform:rotate(45deg); }
+.component-callouts-top .component-callout::after { bottom:-6px; border-right:1px solid #d43328; border-bottom:1px solid #d43328; }
+.component-callouts-bottom .component-callout::after { top:-6px; border-left:1px solid #d43328; border-top:1px solid #d43328; }
+@media(max-width:760px) { .visual:has(.component-showcase) { min-height:610px; } .component-showcase { gap:18px; } .component-showcase .components { gap:8px; } .component-showcase .component { width:30%; } .component-callouts { gap:8px; } .component-callout { padding:8px; font-size:10px; } .component-showcase .sample-input { padding:8px 5px; font-size:10px; } .component-showcase .sample-button { padding:8px 12px; } }
+
+
+.sample-checkbox { display:flex; align-items:center; gap:8px; color:#343434; font-size:12px; }
+.sample-checkbox span { display:grid; place-items:center; width:18px; height:18px; border:1.5px solid #484843; border-radius:3px 5px 3px 4px; background:#d43328; color:#fff; font-size:12px; }
+.sample-badge { display:inline-block; padding:5px 10px; border:1.5px solid #d43328; border-radius:7px 11px 6px 9px; background:#fff4f1; color:#9f2c23; font-size:11px; font-weight:600; }
+.component-showcase .components { row-gap:16px; }
+@media(max-width:760px) { .visual:has(.component-showcase) { min-height:690px; } }
+.sample-accordion { border:1.5px solid #77766d; border-radius:5px 8px 5px 7px; background:#fff; font-size:11px; box-shadow:2px 2px 0 #e6e4dc; }
+.sample-accordion summary { position:relative; padding:8px 25px 8px 9px; cursor:pointer; list-style:none; font-weight:600; }
+.sample-accordion summary::-webkit-details-marker { display:none; } .sample-accordion summary::after { content:"+"; position:absolute; right:9px; color:#d43328; font-size:14px; }
+.sample-accordion[open] summary::after { content:"−"; } .sample-accordion > div { padding:0 9px 9px; color:#696966; }
+.sample-accordion summary:focus-visible { outline:2px solid #d43328; outline-offset:2px; }
+
+.theme-example-light { background:#fff; color:#242424; } .theme-example-light .theme-header,.theme-example-light .theme-button { background:#fff; color:#242424; border:1px solid #a4a39b; } .theme-example-light .theme-line-accent { background:#66665f; }
+@media(max-width:760px) { .theme-examples { grid-template-columns:repeat(2,minmax(0,1fr)); } .visual:has(.theme-showcase) { min-height:750px; } }
+
+
+.system-comparison { width:min(100%,800px); display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:stretch; }
+.system-panel { min-width:0; padding:16px; border:1.5px solid #a6a49c; border-radius:7px 11px 7px 10px; background:#fffefa; box-shadow:3px 4px 0 #e6e4dc; }
+.system-panel h3 { margin:0 0 12px; text-align:center; font:700 14px/1.2 "Helvetica Neue",sans-serif; text-transform:uppercase; letter-spacing:.025em; }
+.system-panel p { margin:10px 0 0; color:#77766f; text-align:center; font-size:10px; line-height:1.35; }
+.system-illustration { position:relative; height:280px; } .sketch-ui { padding:11px; border:1.5px solid #aaa9a1; border-radius:6px 9px 6px 8px; background:#fdfcf8; box-shadow:2px 3px 0 #e9e7df; }
+.sketch-ui strong { display:block; margin-bottom:8px; color:#333; font-size:9px; text-transform:uppercase; } .sketch-ui i { display:block; height:5px; margin:5px 0; border-radius:5px; background:#c9c8c1; } .sketch-ui i:nth-of-type(2) { width:75%; } .sketch-ui i:nth-of-type(3) { width:55%; }
+.sketch-ui > span:not(.mini-button) { display:block; width:38%; height:12px; margin-top:8px; border-radius:5px; background:#a7a69e; }
+.broken-one,.broken-two,.broken-three { position:absolute; width:55%; } .broken-one { left:2%; top:12px; transform:rotate(-5deg); } .broken-two { right:2%; top:93px; transform:rotate(4deg); } .broken-three { left:7%; bottom:8px; transform:rotate(-3deg); }
+.sketch-arrow { position:absolute; color:#d43328; font:28px "Comic Sans MS",cursive; } .arrow-one { top:58px; right:14%; } .arrow-two { top:146px; left:26%; } .arrow-three { bottom:54px; right:12%; }
+.unified-stack { display:flex; flex-direction:column; gap:3px; } .unified-card { min-height:70px; } .unified-arrow { text-align:center; color:#d43328; font-size:17px; line-height:14px; } .mini-blocks { display:flex; gap:6px; margin:7px 0; } .mini-blocks span { flex:1; height:20px; border:1px solid #aaa9a1; border-radius:4px; background:#deddd7; } .mini-button { display:block; width:45px; height:10px; margin-top:6px; border-radius:5px; background:#a7a69e; }
+@media(max-width:760px) { .visual:has(.system-comparison) { min-height:470px; } .system-comparison { gap:8px; } .system-panel { padding:9px; } .system-panel h3 { font-size:10px; } .system-panel p { font-size:9px; } .system-illustration { height:245px; } .sketch-ui { padding:7px; } .sketch-ui strong { font-size:8px; } .unified-card { min-height:63px; } }
+
+
+.sketch-ui small { display:block; margin:-3px 0 7px; color:#77766f; font:9px/1.25 "Helvetica Neue",sans-serif; }
+.visual:has(.system-comparison) { min-height:610px; }
+.explain:has(.overview-details:not([hidden])) .connection { margin-top:15px; padding-top:12px; }
+@media(max-width:760px) { .visual:has(.system-comparison) { min-height:570px; } .sketch-ui small { font-size:8px; } .system-illustration { height:320px; } .broken-two { top:115px; } }
+
+
+.token-showcase { width:min(100%,760px); display:grid; grid-template-columns:minmax(120px,180px) minmax(0,1fr); gap:18px; align-items:center; }
+.token-callout-list { display:flex; flex-direction:column; gap:12px; align-self:center; transform:translateY(-50px); }
+.token-callout-list .token-callout { position:relative; top:auto; left:auto; right:auto; width:100%; margin:0; }
+.token-callout-list .token-callout::before { left:auto; right:-6px; top:50%; bottom:auto; margin-top:-5px; border:0; border-right:1px solid #d43328; border-top:1px solid #d43328; }
+.token-callout-list .token-callout:nth-child(1) { animation-delay:.4s; } .token-callout-list .token-callout:nth-child(2) { animation-delay:.9s; } .token-callout-list .token-callout:nth-child(3) { animation-delay:1.4s; }
+.token-showcase .token-set { width:100%; padding-top:0; row-gap:14px; transform:none; grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media(max-width:760px) { .visual:has(.token-showcase) { min-height:640px; } .token-showcase { grid-template-columns:minmax(95px,130px) minmax(0,1fr); gap:12px; } .token-showcase .token-set { grid-template-columns:repeat(2,minmax(0,1fr)); } .token-showcase .token { padding:10px; min-height:100px; } .token-callout-list .token-callout { font-size:10px; } }
+
+
+.overview-reference { display:block; width:min(100%,820px); height:auto; max-height:100%; object-fit:contain; }
+.visual:has(.overview-reference) { min-height:760px; }
+@media(max-width:760px) { .visual:has(.overview-reference) { min-height:480px; } }
+
+/* Editable whiteboard comparison: wireframes, connectors, and labels. */
+.comparison-diagram { display:grid; grid-template-columns:1fr 1fr; width:min(100%,950px); min-height:620px; background:#f8f7f3; color:#22262b; font-family:"Helvetica Neue",Arial,sans-serif; }
+.diagram-half { min-width:0; padding:22px 20px; } .diagram-fragmented { background:#efede7; } .diagram-unified { background:#f8f8f5; }
+.diagram-half h3 { margin:0 0 26px; text-align:center; font-size:clamp(14px,1.8vw,24px); font-weight:750; text-transform:uppercase; }
+.diagram-scatter { position:relative; height:525px; } .wire,.unified-wire { overflow:hidden; background:#f8f7f3; border:1px solid #b5b4af; border-radius:7px; box-shadow:1px 4px 7px #0002; }
+.wire { position:absolute; width:43%; padding:8px; } .wire b,.unified-wire b { display:block; font-size:9px; text-transform:uppercase; } .wire small { display:block; margin:4px 0; font-size:8px; text-transform:uppercase; }
+.wire i,.unified-wire i { display:block; height:4px; margin:5px 0; background:#b4b3af; border-radius:4px; } .wire i:nth-of-type(2),.unified-wire i:nth-of-type(2) { width:78%; } .wire i:nth-of-type(3),.unified-wire i:nth-of-type(3) { width:58%; }
+.wire-bar { margin:-8px -8px 7px; padding:3px 7px; color:#eee; background:#999995; font-size:8px; } .wire-bar span { float:right; }
+.wire-actions { display:flex; gap:5px; margin-top:7px; } .wire-actions span { width:40%; height:13px; border:1px solid #aaa9a3; border-radius:4px; } .wire-actions span:first-child { background:#999995; }
+.wire-placeholder,.unified-placeholder { height:32px; background:#d2d1cc; border:1px solid #aaa9a4; border-radius:4px; }
+.wire-a { left:3%; top:30px; transform:rotate(-7deg); } .wire-b { right:1%; top:0; transform:rotate(5deg); } .wire-c { left:0; top:200px; width:23%; transform:rotate(-5deg); } .wire-d { left:30%; top:197px; width:43%; } .wire-e { right:1%; top:333px; width:40%; transform:rotate(5deg); } .wire-f { left:10%; bottom:0; transform:rotate(4deg); }
+.wire-menu { color:#aaa9a3; font-size:10px; line-height:1.65; } .diagram-arrow { position:absolute; color:#d87b5f; font-size:27px; line-height:.65; } .da-one { left:52%; top:55px; } .da-two { left:21%; top:149px; } .da-three { left:22%; top:255px; } .da-four { left:65%; top:300px; } .diagram-label { position:absolute; font-weight:700; font-size:8px; text-transform:uppercase; } .dl-one { left:28%; top:160px; } .dl-two { right:1%; top:275px; } .dl-three { right:6%; bottom:0; }
+.diagram-unified-content { display:flex; flex-direction:column; gap:12px; position:relative; } .diagram-unified-content::before { content:""; position:absolute; z-index:0; left:20%; top:45px; bottom:35px; width:62%; border:2px solid #d87b5f; border-radius:18px; }
+.unified-wire { position:relative; z-index:1; padding:9px; } .unified-row { display:flex; gap:9px; } .unified-main { flex:2; min-width:0; } .unified-side { flex:.8; min-width:0; } .unified-side em,.unified-cards em,.unified-flow em { display:block; height:9px; margin-top:5px; background:#999995; border-radius:4px; } .unified-side hr { border:0; border-top:1px solid #ddd; }
+.unified-hero-inner { display:flex; gap:6px; align-items:stretch; margin-top:8px; } .wire-copy { flex:1; } .unified-placeholder { width:15%; height:45px; } .unified-placeholder.wide { width:25%; }
+.unified-cards { display:flex; gap:5px; margin-top:8px; } .unified-cards > div { flex:1; min-width:0; } .unified-cards span,.unified-layout-grid span,.unified-flow div > span { display:block; height:28px; background:#d3d2cd; border:1px solid #aaa9a4; border-radius:4px; } .unified-cards i { height:3px; margin:3px 0; } .unified-cards em { height:7px; }
+.unified-layout { display:flex; gap:7px; margin-top:8px; } .unified-rail { width:23%; } .unified-layout-grid { flex:1; display:grid; grid-template-columns:repeat(3,1fr); gap:5px; } .unified-list span { display:block; color:#aaa9a4; margin-top:7px; font-size:10px; }
+.unified-flow { display:flex; align-items:center; gap:4px; margin-top:8px; } .unified-flow > div { flex:1; border:1px solid #aaa9a4; border-radius:5px; padding:4px; } .unified-flow strong { color:#d87b5f; } .unified-flow i { height:3px; margin:3px 0; } .unified-flow em { height:6px; width:45%; margin:4px auto 0; } .wire-actions.vertical { flex-direction:column; } .wire-actions.vertical span { width:100%; height:9px; }
+.visual:has(.comparison-diagram) { min-height:760px; } .scene:has(.comparison-diagram) { align-items:center; }
+@media(max-width:760px) { .visual:has(.comparison-diagram) { min-height:660px; } .diagram-half { padding:14px 8px; } .diagram-half h3 { margin-bottom:16px; font-size:11px; } .diagram-scatter { height:480px; } .wire { padding:5px; } .wire-bar { margin:-5px -5px 5px; } .wire b,.unified-wire b { font-size:7px; } .diagram-label { font-size:6px; } .diagram-unified-content { gap:8px; } .unified-wire { padding:6px; } .unified-row { gap:5px; } }
+
+
+.diagram-connectors { position:absolute; inset:0; width:100%; height:100%; z-index:1; overflow:visible; pointer-events:none; }
+.diagram-connectors path:not(marker path) { fill:none; stroke:#d87b5f; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:7 6; marker-end:url(#broken-arrow); vector-effect:non-scaling-stroke; }
+.diagram-scatter .wire { z-index:2; } .diagram-label { z-index:3; background:#efede7; padding:2px 4px; border-radius:3px; }
+
 </style>
 </head>
 <body>
 <main class="app">
-  <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><span>Foundry</span><span class="brand-divider" aria-hidden="true"></span><span class="brand-caption">Design system</span></div>
   <header class="top">
     <div>
       <div class="eyebrow">Komodo design system</div>
@@ -428,18 +521,24 @@ h2 { font-size: 27px; }
 
   <section class="stage" aria-label="Design system animation">
     <nav class="step-nav" aria-label="Animation steps">
-      <button class="step active" data-step="0"><span class="num">1</span> Tokens</button>
-      <button class="step" data-step="1"><span class="num">2</span> Themes</button>
-      <button class="step" data-step="2"><span class="num">3</span> Components</button>
-      <button class="step" data-step="3"><span class="num">4</span> Grid</button>
-      <button class="step" data-step="4"><span class="num">5</span> Template</button>
-      <button class="step" data-step="5"><span class="num">6</span> Page</button>
+      <button class="step active" data-step="0"><span class="num">1</span> Overview</button>
+      <button class="step" data-step="1"><span class="num">2</span> Tokens</button>
+      <button class="step" data-step="2"><span class="num">3</span> Themes</button>
+      <button class="step" data-step="3"><span class="num">4</span> Components</button>
+      <button class="step" data-step="4"><span class="num">5</span> Grid</button>
+      <button class="step" data-step="5"><span class="num">6</span> Template</button>
+      <button class="step" data-step="6"><span class="num">7</span> Page</button>
     </nav>
     <div class="content">
       <aside class="explain" aria-live="polite">
         <div class="phase" id="phase"></div>
         <h2 id="heading"></h2>
         <p class="description" id="description"></p>
+        <div class="theme-details overview-details" id="overview-details" hidden>
+          <p><strong>Fragmented:</strong> Teams create different styles and components, resulting in repeated work and inconsistent experiences.</p>
+          <p><strong>Unified:</strong> Shared tokens, components, and layouts help teams build coherent experiences across products.</p>
+          <p><strong>For teams:</strong> Designers and developers can collaborate using the same building blocks.</p>
+        </div>
         <div class="theme-details token-details" id="token-details" hidden>
           <p><strong>What they control:</strong> Colors, typography, spacing, borders, and other visual values.</p>
           <p><strong>Why they matter:</strong> A shared name lets teams update a decision consistently across designs and code.</p>
@@ -463,7 +562,7 @@ h2 { font-size: 27px; }
     </div>
     <footer class="foot">
       <span>Illustrative example · Colors, values, and components are not verified Komodo specifications</span>
-      <span class="progress"><span id="counter">1 / 6</span><span class="bar"><span id="bar"></span></span></span>
+      <span class="progress"><span id="counter">1 / 7</span><span class="bar"><span id="bar"></span></span></span>
     </footer>
   </section>
 </main>
@@ -477,20 +576,43 @@ h2 { font-size: 27px; }
 <script>
 const steps = [
   {
+    label: "Why a design system matters",
+    title: "From fragmented to connected",
+    description: "A design system brings shared patterns together so teams can build more consistent, connected experiences.",
+    connectionTitle: "The building blocks",
+    connection: "Explore how tokens, themes, components, grids, and templates come together to create a page.",
+    visual: `<div class="comparison-diagram" role="img" aria-label="A fragmented system with errors and broken flows compared with a unified platform of consistent designs, aligned components, structured layouts, and seamless flows.">
+      <section class="diagram-half diagram-fragmented"><h3>Fragmented system</h3><div class="diagram-scatter">
+        <div class="wire wire-a"><b>Error</b><i></i><i></i><i></i><div class="wire-actions"><span></span><span></span></div></div>
+        <div class="wire wire-b"><div class="wire-bar">☰ <span>— &nbsp; — &nbsp; —</span></div><b>Error</b><i></i><i></i><i></i><div class="wire-placeholder"></div><div class="wire-actions"><span></span><span></span></div></div>
+        <div class="wire wire-c"><div class="wire-menu">● ▬<br>● ▬<br>● ▬<br>● ▬</div><div class="wire-actions"><span></span></div></div>
+        <div class="wire wire-d"><div class="wire-bar">☰ <span>×</span></div><b>Error</b><small>Misalignment</small><i></i><i></i><i></i><div class="wire-actions"><span></span><span></span></div></div>
+        <div class="wire wire-e"><div class="wire-bar">☰ <span>×</span></div><b>Misalignment</b><div class="wire-placeholder"></div><i></i><i></i><div class="wire-actions"><span></span></div></div>
+        <div class="wire wire-f"><div class="wire-bar">☰ <span>×</span></div><b>Inconsistency</b><i></i><i></i><div class="wire-actions"><span></span><span></span></div></div>
+        <svg class="diagram-connectors" viewBox="0 0 400 525" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="broken-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 1 1 L 8 5 L 1 9" fill="none" stroke="#d87b5f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><path d="M 170 100 H 205 V 180"/><path d="M 72 150 V 170 L 120 220"/><path d="M 92 255 H 115"/><path d="M 275 120 V 180 H 292"/><path d="M 300 300 H 355 V 335"/><path d="M 230 328 V 400 H 195"/></svg><div class="diagram-label dl-one">Misalignment</div><div class="diagram-label dl-two">Broken flow</div><div class="diagram-label dl-three">Inconsistency</div>
+      </div></section>
+      <section class="diagram-half diagram-unified"><h3>Unified platform</h3><div class="diagram-unified-content">
+        <div class="unified-wire wire-hero"><b>Consistent design</b><div class="unified-hero-inner"><div class="wire-copy"><i></i><i></i><i></i><div class="wire-actions"><span></span><span></span></div></div><div class="unified-placeholder"></div><div class="unified-placeholder wide"></div></div></div>
+        <div class="unified-row"><div class="unified-wire unified-main"><b>Aligned components</b><div class="unified-cards"><div><span></span><i></i><i></i><em></em></div><div><span></span><i></i><i></i><em></em></div><div><span></span><i></i><i></i><em></em></div><div><span></span><i></i><i></i><em></em></div></div></div><div class="unified-wire unified-side"><i></i><i></i><i></i><hr><i></i><i></i><em></em></div></div>
+        <div class="unified-row"><div class="unified-wire unified-main"><b>Structured layout</b><div class="unified-layout"><div class="unified-rail"><i></i><i></i><i></i><i></i></div><div class="unified-layout-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div></div></div><div class="unified-wire unified-side"><i></i><div class="unified-list"><span>☐ ━</span><span>☐ ━</span><span>☐ ━</span></div></div></div>
+        <div class="unified-row"><div class="unified-wire unified-main"><b>Seamless flow</b><div class="unified-flow"><div><span></span><i></i><i></i><em></em></div><strong>→</strong><div><span></span><i></i><i></i><em></em></div><strong>→</strong></div></div><div class="unified-wire unified-side"><i></i><div class="wire-actions vertical"><span></span><span></span><span></span></div><em></em></div></div>
+      </div></section></div>`
+  },
+  {
     label: "Shared design decisions",
     title: "Tokens define the visual language",
     description: "Tokens are named design decisions, such as color.text.primary or spacing.medium.",
     connectionTitle: "What happens next",
     connection: "Components use these shared values to create a consistent look and feel.",
-    visual: `<div class="token-set">
-      <div class="token arrive"><small>Color</small><div class="swatches"><span class="swatch" style="background:#d43328"></span><span class="swatch" style="background:#171717"></span><span class="swatch" style="background:#f1efec"></span></div><div class="token-caption">Primary, text, surface</div><div class="token-callout"><strong>What they control</strong>Tokens define shared visual values.</div></div>
-      <div class="token arrive"><small>Typography</small><div class="big-type">Aa</div><div class="token-caption">Type size and weight</div><div class="token-callout"><strong>Figma connection</strong>Values can connect to Figma variables.</div></div>
-      <div class="token arrive"><small>Spacing</small><div class="spacing"><span style="height:8px"></span><span style="height:15px"></span><span style="height:23px"></span><span style="height:30px"></span></div><div class="token-caption">A consistent spacing scale</div><div class="token-callout"><strong>Why tokens matter</strong>Shared names keep designs and code consistent.</div></div>
+    visual: `<div class="token-showcase"><div class="token-callout-list"><div class="token-callout"><strong>What they control</strong>Tokens define shared visual values.</div><div class="token-callout"><strong>Figma connection</strong>Values can connect to Figma variables.</div><div class="token-callout"><strong>Why tokens matter</strong>Shared names keep designs and code consistent.</div></div><div class="token-set">
+      <div class="token arrive"><small>Color</small><div class="swatches"><span class="swatch" style="background:#d43328"></span><span class="swatch" style="background:#171717"></span><span class="swatch" style="background:#f1efec"></span></div><div class="token-caption">Primary, text, surface</div></div>
+      <div class="token arrive"><small>Typography</small><div class="big-type">Aa</div><div class="token-caption">Type size and weight</div></div>
+      <div class="token arrive"><small>Spacing</small><div class="spacing"><span style="height:8px"></span><span style="height:15px"></span><span style="height:23px"></span><span style="height:30px"></span></div><div class="token-caption">A consistent spacing scale</div></div>
       <div class="token arrive"><small>Radius</small><div class="radius-demo"></div><div class="token-caption">Corner shape</div></div>
       <div class="token arrive"><small>Border</small><div class="token-sample-border"></div><div class="token-caption">Outline width and color</div></div>
       <div class="token arrive"><small>Shadow</small><div class="token-sample-shadow"></div><div class="token-caption">Elevation and depth</div></div>
       <div class="token-example"><span>Illustrative example</span><code>spacing.medium</code> → <code>16px</code> → <span>card padding</span></div>
-    </div>`
+    </div></div>`
   },
   {
     label: "One system, multiple brands",
@@ -502,6 +624,7 @@ const steps = [
       <div class="theme-example arrive"><div class="theme-header thermo-theme"><span class="theme-part">Header</span>Thermo Fisher</div><div class="theme-preview"><span class="theme-part theme-part-text">Text</span><div class="theme-line theme-line-accent thermo-theme"></div><div class="theme-line"></div><div class="theme-line short"></div><span class="theme-part theme-part-button">Button</span><div class="theme-button thermo-theme">Continue</div></div><strong>ThermoFisher.com theme</strong></div>
       <div class="theme-example arrive"><div class="theme-header fisher-theme"><span class="theme-part">Header</span>Fisher Scientific</div><div class="theme-preview"><span class="theme-part theme-part-text">Text</span><div class="theme-line theme-line-accent fisher-theme"></div><div class="theme-line"></div><div class="theme-line short"></div><span class="theme-part theme-part-button">Button</span><div class="theme-button fisher-theme">Continue</div></div><strong>FisherSci.com theme</strong></div>
       <div class="theme-example theme-example-dark arrive"><div class="theme-header dark-theme"><span class="theme-part">Header</span>Application</div><div class="theme-preview"><span class="theme-part theme-part-text">Text</span><div class="theme-line theme-line-accent dark-theme"></div><div class="theme-line"></div><div class="theme-line short"></div><span class="theme-part theme-part-button">Button</span><div class="theme-button dark-theme">Continue</div></div><strong>Dark theme</strong></div>
+      <div class="theme-example theme-example-light arrive"><div class="theme-header light-theme"><span class="theme-part">Header</span>Application</div><div class="theme-preview"><span class="theme-part theme-part-text">Text</span><div class="theme-line theme-line-accent light-theme"></div><div class="theme-line"></div><div class="theme-line short"></div><span class="theme-part theme-part-button">Button</span><div class="theme-button light-theme">Continue</div></div><strong>Light theme</strong></div>
     </div><div class="theme-code"><p>Apply a theme by wrapping your application or page in <code>KomodoTheme</code>.</p><pre><code>&lt;KomodoTheme theme="foundry"&gt;
   &lt;ResearchWorkspaceTemplate /&gt;
 &lt;/KomodoTheme&gt;</code></pre></div></div>`
@@ -509,14 +632,22 @@ const steps = [
   {
     label: "Reusable building blocks",
     title: "Components use tokens",
-    description: "These components are prebuilt and ready to use. They apply shared values to familiar interface elements and meet our accessibility requirements.",
+    description: "Components are reusable building blocks for an interface. They combine shared token values with structure, behavior, and accessibility features, so teams can use them consistently across products.",
     connectionTitle: "Notice the relationship",
     connection: "The color, type, spacing, and corner styles from the first step show up across these components.",
-    visual: `<div class="components">
+    visual: `<div class="component-showcase"><div class="component-callouts component-callouts-top">
+      <div class="component-callout"><strong>What they include</strong>Visual styling, content, behavior, and states such as default, hover, focus, disabled, and error.</div>
+      <div class="component-callout"><strong>How they’re used</strong>Designers use the Figma library; developers use the corresponding coded components.</div>
+    </div><div class="components">
       <div class="component arrive"><span class="component-label">Search input</span><div class="sample-input">Search products...</div></div>
       <div class="component arrive"><span class="component-label">Button</span><div class="sample-button">Search</div></div>
       <div class="component arrive"><span class="component-label">Product card</span><div class="sample-card"><div class="block"></div><div class="line"></div><div class="line short"></div></div></div>
-    </div>`
+      <div class="component arrive"><span class="component-label">Checkbox</span><div class="sample-checkbox"><span aria-hidden="true">✓</span> In stock</div></div>
+      <div class="component arrive"><span class="component-label">Accordion</span><details class="sample-accordion" open><summary>Details</summary><div>More information</div></details></div>
+    </div><div class="component-callouts component-callouts-bottom">
+      <div class="component-callout"><strong>Why they matter</strong>Shared components reduce repeated work and help experiences stay consistent.</div>
+      <div class="component-callout"><strong>Accessibility</strong>Components are designed to meet accessibility requirements, but the complete page and its usage still need testing.</div>
+    </div></div>`
   },
   {
     label: "Layout foundation",
@@ -524,7 +655,7 @@ const steps = [
     description: "The grid is a fundamental building block of a design system. Columns, margins, and gutters provide a structure for aligning components on the screen.",
     connectionTitle: "Why it matters",
     connection: "A shared grid helps teams create predictable layouts that can adapt to different screen sizes.",
-    visual: browser("grid")
+    visual: `<div class="responsive-grids arrive"><div class="responsive-grid-row"><strong>Desktop — 12 columns</strong><div class="responsive-grid-columns" style="--columns:12">${Array.from({length:12}, (_,i) => `<span>${i + 1}</span>`).join("")}</div></div><div class="responsive-grid-row"><strong>Tablet — 8 columns</strong><div class="responsive-grid-columns" style="--columns:8">${"<span></span>".repeat(8)}</div></div><div class="responsive-grid-row"><strong>Mobile — 4 columns</strong><div class="responsive-grid-columns" style="--columns:4">${"<span></span>".repeat(4)}</div></div><p>Illustrative recommendation, not verified Komodo specifications.</p></div>`
   },
   {
     label: "Reusable page structure",
@@ -573,8 +704,9 @@ function render() {
   $("connection-title").textContent = s.connectionTitle;
   $("connection-text").textContent = s.connection;
   $("visual-label").textContent = s.label;
-  $("token-details").hidden = current !== 0;
-  $("theme-details").hidden = current !== 1;
+  $("overview-details").hidden = current !== 0;
+  $("token-details").hidden = current !== 1;
+  $("theme-details").hidden = current !== 2;
   $("scene").innerHTML = s.visual;
   $("counter").textContent = `${current + 1} / ${steps.length}`;
   $("bar").style.width = `${((current + 1) / steps.length) * 100}%`;
