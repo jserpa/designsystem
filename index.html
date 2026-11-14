@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Komodo Design System: From Tokens to Pages</title>
+<title>Universal UI: One connected experience</title>
 <style>
   * { box-sizing: border-box; }
   :root {
@@ -517,7 +517,7 @@ h2 { font-size: 27px; }
 .diagram-scatter .wire { z-index:2; } .diagram-label { z-index:3; background:#efede7; padding:2px 4px; border-radius:3px; }
 
 /* Build the explanation, then the fragmented and unified columns. */
-@keyframes draw-in { from { opacity:0; clip-path:inset(0 100% 0 0); } to { opacity:1; clip-path:inset(0 -10px -10px -10px); } }
+@keyframes draw-in { from { opacity:0; clip-path:inset(-12px 100% -12px -12px); } to { opacity:1; clip-path:inset(-12px -12px -12px -12px); } }
 .explain:has(.overview-details:not([hidden])) > .phase,.explain:has(.overview-details:not([hidden])) > h2,.explain:has(.overview-details:not([hidden])) > .description,.overview-details:not([hidden]) p,.explain:has(.overview-details:not([hidden])) > .connection,.comparison-diagram .diagram-half h3,.comparison-diagram .wire,.comparison-diagram .unified-wire,.comparison-diagram .diagram-label,.comparison-diagram .diagram-connectors,.diagram-unified-content::before { animation:draw-in .55s ease-out both; }
 .explain:has(.overview-details:not([hidden])) > h2 { animation-delay:.15s; }
 .explain:has(.overview-details:not([hidden])) > .description { animation-delay:.3s; }
@@ -553,38 +553,197 @@ h2 { font-size: 27px; }
 .scene .token-set .token:nth-child(4),.scene .theme-example:nth-child(4),.scene .component:nth-child(4) { animation-delay:2.3s; }
 .scene .token-set .token:nth-child(5),.scene .component:nth-child(5) { animation-delay:2.6s; }
 .scene .token-set .token:nth-child(6),.scene .token-example,.scene .theme-code,.scene .component-callouts-bottom .component-callout,.scene .responsive-grids > p { animation-delay:2.9s; }
+.scene .token-set .token:nth-child(7) { animation-delay:3.2s; }
+.scene .token-set .token:nth-child(8) { animation-delay:3.5s; }
+.scene .token-set .token:nth-child(9) { animation-delay:3.8s; }
+.scene .token-set .token-example { animation-delay:3.8s; }
 .scene .browser-top,.scene .browser-body > *,.scene .cart-product-placeholder,.scene .cart-heading,.scene .cart-row,.scene .cart-summary,.scene .cart-variant-section { animation:draw-in .5s ease-out 1.9s both; }
 .scene .cart-heading,.scene .cart-row:nth-of-type(3) { animation-delay:2.2s; } .scene .cart-row:nth-of-type(4),.scene .cart-summary { animation-delay:2.5s; } .scene .cart-variant-section { animation-delay:2.8s; }
 @media (prefers-reduced-motion:reduce) { .scene .browser * { animation:none !important; } .explain.step-building > *, .explain.step-building .theme-details p,.scene .token-callout-list .token-callout,.scene .token-set .token,.scene .token-example,.scene .theme-example,.scene .theme-code,.scene .component-callout,.scene .component,.scene .responsive-grid-row,.scene .responsive-grids > p,.scene .browser { animation:none !important; } }
+.presentation-toolbar { display:flex; justify-content:flex-end; align-items:center; gap:12px; padding:10px 16px; border-bottom:1px solid #e5e4e1; }
+.presentation-controls { display:none; gap:9px; flex-wrap:wrap; }
+body.presenting { overflow:hidden; }
+body.presenting .stage { position:fixed; inset:0; z-index:100; overflow:auto; border:0; border-radius:0; box-shadow:none; background:#fff; }
+body.presenting .presentation-toolbar { position:sticky; top:0; z-index:10; background:#fff; justify-content:space-between; }
+body.presenting .presentation-controls { display:flex; }
+body.presenting .content { min-height:calc(100vh - 175px); }
+body.presenting .visual { min-height:calc(100vh - 175px); }
+body.presenting .scene { inset:48px 20px 20px; }
+@media(max-width:760px) { .presentation-toolbar { flex-wrap:wrap; } body.presenting .content { min-height:0; } body.presenting .visual { min-height:660px; } }
+
+.step-nav { display:flex; overflow-x:auto; }
+.step-nav .step { flex:0 0 auto; min-width:115px; }
+.content.vision-screen .scene { overflow:visible; align-items:center; }
+.content.vision-screen .initiative-cards { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.content.vision-screen .initiative-card strong { font-size:18px; }
+.content.vision-screen .initiative-card p { font-size:15px; line-height:1.45; }
+.content.vision-screen .initiative-card small { font-size:12px; margin-bottom:6px; }
+@media(max-width:760px) { .content.vision-screen .initiative-cards { grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; } .content.vision-screen .initiative-card { padding:8px; } .content.vision-screen .initiative-card strong { font-size:12px; margin-bottom:4px; } .content.vision-screen .initiative-card p { font-size:10px; line-height:1.3; } }
+.vision-pagination { grid-column:1/-1; display:flex; justify-content:center; align-items:center; gap:10px; }
+.vision-pagination button { border:1px solid #aaa9a4; background:#fff; border-radius:5px; padding:8px 14px; cursor:pointer; font:inherit; }
+.vision-pagination button[aria-current="true"] { background:#262626; color:#fff; border-color:#262626; }
+.content.vision-screen .initiative-card { padding:14px; }
+.content.title-screen { display:block; }
+.content.title-screen .explain { display:none; }
+.content.title-screen .visual { min-height:520px; background:#f8f7f4; }
+body.presenting .content.title-screen .visual { min-height:calc(100vh - 175px); }
+.title-layout { width:100%; display:grid; grid-template-columns:minmax(240px,.85fr) minmax(0,1.4fr); gap:28px; align-items:center; }
+.title-screen-intro { margin-bottom:12px; }
+.title-screen-intro h2 { font-family:"Marker Felt", "Comic Sans MS", cursive; font-weight:700; font-size:clamp(36px,5vw,64px); margin:0 0 12px; }
+.title-screen-intro p { font-size:18px; line-height:1.5; color:#5c5b56; max-width:650px; margin:0; }
+.title-illustration { width:60%; height:auto; display:block; justify-self:center; }
+@media(max-width:760px) { .title-layout { grid-template-columns:1fr; gap:15px; } .title-screen-intro h2 { font-size:36px; } .title-screen-intro p { font-size:15px; } .title-illustration { max-height:300px; } }
+.initiative-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; width:100%; align-content:center; }
+.initiative-card[hidden] { display:none; }
+.initiative-card { background:#fff; border:1px solid #c8c5bf; border-radius:8px; padding:22px; box-shadow:3px 3px 0 #e6e1da; }
+.initiative-card small { display:block; color:#b52d24; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+.initiative-card strong { display:block; font-size:19px; margin-bottom:8px; }
+.initiative-card p { margin:0; color:#5c5b56; font-size:14px; line-height:1.5; }
+.initiative-card.impact-card { grid-column:1/-1; }
+.initiative-note { grid-column:1/-1; color:#6b6862; font-size:12px; line-height:1.5; }
+.narrative-flow { width:100%; display:flex; flex-direction:column; gap:18px; }
+.flow-track { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:28px; }
+.flow-step { position:relative; padding:16px 14px 12px; border-top:3px solid #b52d24; }
+.flow-step:not(:last-child)::after { content:''; position:absolute; right:-17px; top:-7px; width:10px; height:10px; border-top:3px solid #b52d24; border-right:3px solid #b52d24; transform:rotate(45deg); z-index:1; }
+.flow-step small,.measure-row small { display:block; color:#b52d24; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:9px; }
+.flow-step strong,.measure-row strong { display:block; font-size:16px; margin-bottom:8px; }
+.flow-step p,.measure-row p { color:#5c5b56; font-size:13px; line-height:1.5; margin:0; }
+.flow-step ul { color:#5c5b56; font-size:13px; line-height:1.5; margin:0; padding-left:17px; }
+.flow-step li + li { margin-top:6px; }
+.flow-caption { color:#6b6862; font-size:12px; line-height:1.5; }
+.measure-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.measure-row > div { border-top:3px solid #b52d24; padding-top:16px; }
+@media(max-width:760px) { .flow-track,.measure-row { grid-template-columns:1fr; gap:12px; } .flow-step { padding:10px 8px; } .flow-step:not(:last-child)::after { right:12px; top:auto; bottom:-10px; transform:rotate(135deg); } .measure-row > div { padding-top:8px; } }
+@media(max-width:760px) { .initiative-cards { grid-template-columns:1fr; gap:8px; } .initiative-card { padding:12px; } .initiative-card strong { font-size:15px; } .initiative-card p { font-size:12px; } .visual:has(.initiative-cards) { min-height:550px; } }
+h1, h2, h3, .step, .step .num, .controls button, .presentation-controls button, .presentation-toolbar > button, .vision-pagination button { font-family:"Marker Felt", "Comic Sans MS", cursive; }
+.visual-label { font-size:16px; }
+/* Handwritten marker lettering across the whiteboard. */
+.app, .app button, .app code, .app h1, .app h2, .app h3, .app p, .app li, .app small, .app strong { font-family:"Marker Felt", "Comic Sans MS", cursive; }
+/* Larger supporting copy and labels for presentation viewing. */
+.eyebrow,.phase,.step,.connection strong,.connection p,.theme-details,.flow-step p,.flow-step ul,.measure-row p,.flow-caption,.initiative-note,.initiative-card p { font-size:15px; }
+.flow-step small,.measure-row small,.initiative-card small,.token small,.component-label,.token-caption,.token-callout,.component-callout,.token-example,.theme-code,.theme-example > strong { font-size:13px; }
+.token-callout strong,.component-callout strong,.token-example > span:first-child,.theme-part { font-size:12px; }
+.foot,.grid-note,.timeline-label { font-size:13px; }
+@media(max-width:760px) { .step { font-size:13px; } .flow-step p,.flow-step ul,.flow-caption,.initiative-card p { font-size:14px; } }
+/* Persistent, left-aligned presentation navigation. */
+.stage { display:grid; grid-template-columns:220px minmax(0,1fr); grid-template-rows:auto 1fr auto; }
+.presentation-toolbar { grid-column:2; grid-row:1; }
+.step-nav { grid-column:1; grid-row:1 / 4; display:flex; flex-direction:column; align-items:stretch; gap:3px; overflow-y:auto; overflow-x:hidden; padding:16px 10px; border-right:1px solid #d2d0c9; border-bottom:0; background:#fff; }
+.step-nav::before { content:"Presentation"; padding:8px 12px 14px; color:#77766f; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+.step-nav .step { flex:0 0 auto; min-width:0; min-height:44px; width:100%; padding:8px 10px; border:0; border-radius:8px; background:transparent; font-size:14px; }
+.step-nav .step:hover { background:#e6e4de; }
+.step-nav .step.active { background:#e2e0d9; color:#242424; }
+.nav-divider { flex:0 0 auto; height:1px; margin:9px 10px; background:#d2d0c9; }
+@media(max-width:760px) { .nav-divider { width:1px; height:auto; margin:6px; align-self:stretch; } }
+.content { grid-column:2; grid-row:2; min-width:0; }
+.foot { grid-column:2; grid-row:3; min-width:0; }
+body.presenting .step-nav { max-height:100vh; position:sticky; top:0; }
+@media(max-width:760px) { .stage { display:flex; flex-direction:column; } .presentation-toolbar { order:0; } .step-nav { order:1; flex-direction:row; overflow-x:auto; overflow-y:hidden; padding:8px; border-right:0; border-bottom:1px solid #d2d0c9; } .step-nav::before { display:none; } .step-nav .step { width:auto; min-width:max-content; min-height:40px; } .content { order:2; } .foot { order:3; } body.presenting .step-nav { position:static; max-height:none; } }
+.stage.nav-collapsed { grid-template-columns:54px minmax(0,1fr); }
+.step-nav[hidden] { display:none; }
+.presentation-toolbar { justify-content:space-between; }
+.toolbar-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.nav-toggle { grid-column:1; grid-row:1; justify-self:start; align-self:start; position:relative; z-index:11; margin:14px 0 0 12px; width:32px; height:32px; padding:0; display:grid; place-items:center; font-size:18px; }
+.nav-toggle { justify-self:end; margin:16px 12px 0 0; }
+.step-nav { padding-top:16px; }
+.step-nav::before { padding-right:40px; min-height:44px; display:flex; align-items:center; }
+.stage.nav-collapsed .nav-toggle { justify-self:center; margin-right:0; }
+.enlarge-toggle { grid-column:2; grid-row:1; justify-self:end; align-self:start; position:relative; z-index:11; margin:14px 16px 0 0; width:36px; height:36px; padding:0; display:grid; place-items:center; font-size:18px; }
+@media(max-width:760px) { .nav-toggle { order:0; margin:8px 0 0 12px; flex:none; } .stage.nav-collapsed { display:flex; } .step-nav { padding-top:8px; } }
+.top > .controls { display:none; }
+.foot .presentation-toolbar { position:static; display:block; padding:0; border:0; background:transparent; }
+.foot .toolbar-actions,.foot .presentation-controls { display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+.foot { gap:16px; }
+.foot { position:relative; justify-content:center; }
+.foot .progress { position:absolute; right:24px; }
+@media(max-width:1100px) { .foot .progress { position:static; } .foot { flex-wrap:wrap; } }
+.foot { border-top:0; background:transparent; padding:14px 24px 22px; }
+.stage,body.presenting .stage { background:#fff; }
+.stage:has(.content.title-screen),body.presenting .stage:has(.content.title-screen) { background:#f8f7f4; }
+.foot .presentation-toolbar { padding:9px; border:1px solid rgba(126,124,115,.32); border-radius:14px 18px 15px 17px; background:rgba(255,254,250,.78); box-shadow:0 10px 24px rgba(50,48,42,.12), inset 0 1px 0 rgba(255,255,255,.9); backdrop-filter:blur(16px) saturate(1.1); -webkit-backdrop-filter:blur(16px) saturate(1.1); }
+.stage:not(:has(.content.title-screen)) .foot .presentation-toolbar { background:transparent; }
+.foot .presentation-toolbar,.stage:not(:has(.content.title-screen)) .foot .presentation-toolbar { background:transparent; border:0; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; padding:0; }
+.stage:not(:has(.content.title-screen)),body.presenting .stage:not(:has(.content.title-screen)) { background-color:#fffefa; background-image:linear-gradient(to bottom,#fff 53px,#cccac3 53px,#cccac3 54px),radial-gradient(#dbdad2 1px,transparent 1px); background-size:100% 54px,20px 20px; background-repeat:no-repeat,repeat; }
+.stage:not(:has(.content.title-screen)) .foot { background:#fff; border-top:1px solid #cccac3; }
+/* Make explanatory copy easier to read while presenting. */
+body { font-size:18px; }
+.intro,.description,.title-screen-intro p { font-size:19px; }
+.connection p,.theme-details,.flow-step p,.flow-step ul,.measure-row p,.initiative-card p { font-size:17px; line-height:1.5; }
+.flow-caption,.initiative-note,.foot,.token-caption,.token-callout,.component-callout,.theme-code,.token-example { font-size:15px; line-height:1.45; }
+@media(max-width:760px) { .intro,.description,.title-screen-intro p { font-size:17px; } .connection p,.theme-details,.flow-step p,.flow-step ul,.measure-row p,.initiative-card p { font-size:16px; } }
+.app p,.app li,.app p strong,.app li strong,.description,.connection,.flow-caption,.initiative-note,.token-caption,.token-callout,.component-callout,.theme-details,.theme-code,.token-example,.foot { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; }
+/* Components trace a small circular path before their explanatory callouts appear. */
+@keyframes component-orbit {
+  0% { opacity:0; transform:translate(-24px,0); }
+ 15% { opacity:1; }
+ 30% { transform:translate(0,-24px); }
+ 55% { transform:translate(24px,0); }
+ 80% { transform:translate(0,24px); }
+ 100% { opacity:1; transform:translate(0,0); }
+}
+.scene .component-showcase .component { animation:component-orbit 1.5s ease-in-out both; }
+.scene .component-showcase .component:nth-child(1) { animation-delay:.2s; }
+.scene .component-showcase .component:nth-child(2) { animation-delay:.4s; }
+.scene .component-showcase .component:nth-child(3) { animation-delay:.6s; }
+.scene .component-showcase .component:nth-child(4) { animation-delay:.8s; }
+.scene .component-showcase .component:nth-child(5) { animation-delay:1s; }
+.scene .component-showcase .component-callout { animation:draw-in .55s ease-out 2.7s both; }
+.scene .component-showcase .component-callouts-bottom .component-callout { animation-delay:3s; }
+@media (prefers-reduced-motion:reduce) { .scene .component-showcase .component,.scene .component-showcase .component-callout { animation:none !important; } }
+/* Begin the flow after the explanation's final entrance completes. */
+@keyframes flow-enter { from { opacity:0; transform:translateX(-12px); } to { opacity:1; transform:translateX(0); } }
+.scene .flow-step { animation:flow-enter .5s ease-out both; }
+.scene .flow-step:nth-child(1) { animation-delay:1.45s; }
+.scene .flow-step:nth-child(2) { animation-delay:1.95s; }
+.scene .flow-step:nth-child(3) { animation-delay:2.45s; }
+.scene .flow-step:nth-child(4) { animation-delay:2.95s; }
+.scene .narrative-flow .flow-caption { animation:draw-in .5s ease-out 3.45s both; }
+@media (prefers-reduced-motion:reduce) { .scene .flow-step,.scene .narrative-flow .flow-caption { animation:none; } }
+.before-after { width:100%; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.before-after-column { border:1.5px solid #77766f; border-radius:6px 10px 6px 9px; padding:18px; background:#fffefa; }
+.before-after-column h3 { margin:0 0 12px; font-size:19px; }
+.before-after-sample { border:1px solid #aaa9a1; border-radius:5px 8px 5px 7px; padding:10px 12px; margin-bottom:14px; color:#333; font:13px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif; }
+.before-after-sample strong { display:block; margin-bottom:5px; }
+.before-after-column ul { padding-left:20px; margin:0; color:#55554f; font:15px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif; }
+.before-after-column li + li { margin-top:8px; }
+.before-after-note { grid-column:1/-1; color:#666663; font:14px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif; }
+.pilot-summary { grid-column:1/-1; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 24px; }
+.pilot-summary h3 { grid-column:1/-1; margin:4px 0; }
+.pilot-summary p { margin:4px 0 0; font:14px/1.45 "Helvetica Neue",Helvetica,Arial,sans-serif; }
+.scene:has(.before-after) { overflow-y:auto; align-items:safe center; justify-content:center; padding:10px 0; }
+.before-after { margin:auto; }
+.scene:has(.token-showcase) { overflow-y:auto; align-items:safe center; padding:10px 0; }
+.token-showcase { margin:auto; }
+@media(max-width:760px) { .before-after { grid-template-columns:1fr; gap:10px; } .before-after-note { grid-column:1; } .visual:has(.before-after) { min-height:700px; } }
+.explain { min-height:0; max-height:720px; overflow-y:auto; overscroll-behavior:contain; background:#fff; }
+.content:not(.title-screen) { position:relative; border-top:1px solid #cccac3; background:linear-gradient(to right,#fff 315px,transparent 315px); }
+.content:not(.title-screen)::before { content:""; position:absolute; top:0; bottom:0; left:314px; border-right:1px solid #cccac3; pointer-events:none; z-index:1; }
+.content:not(.title-screen) .explain { border-right:0; }
+body.presenting .explain { max-height:calc(100vh - 150px); }
+@media(max-width:760px) { .content:not(.title-screen) { background:transparent; } .content:not(.title-screen)::before { display:none; } .explain,body.presenting .explain { max-height:380px; } }
 </style>
 </head>
 <body>
 <main class="app">
   <header class="top">
     <div>
-      <div class="eyebrow">Komodo design system</div>
-      <h1>How an interface comes together</h1>
-      <p class="intro">Follow the building blocks from shared design decisions to a complete product experience.</p>
+      <div class="eyebrow">Universal UI · UX initiative</div>
+      <h1>One connected experience</h1>
+      <p class="intro">A proposed UX vision for consistent, accessible experiences across our digital products.</p>
     </div>
     <div class="controls">
       <button class="control" id="back" aria-label="Previous step">← Back</button>
       <button class="control primary" id="play">▶ Play animation</button>
       <button class="control" id="next" aria-label="Next step">Next →</button>
+      <button class="control" id="export-pptx" type="button">↓ Export PowerPoint</button>
     </div>
   </header>
 
   <section class="stage" aria-label="Design system animation">
-    <nav class="step-nav" aria-label="Animation steps">
-      <button class="step active" data-step="0"><span class="num">1</span> Overview</button>
-      <button class="step" data-step="1"><span class="num">2</span> Tokens</button>
-      <button class="step" data-step="2"><span class="num">3</span> Themes</button>
-      <button class="step" data-step="3"><span class="num">4</span> Components</button>
-      <button class="step" data-step="4"><span class="num">5</span> Grid</button>
-      <button class="step" data-step="5"><span class="num">6</span> Template</button>
-      <button class="step" data-step="6"><span class="num">7</span> Page</button>
-    </nav>
+    <button class="control nav-toggle" id="nav-toggle" type="button" aria-expanded="true" aria-controls="slide-navigation" aria-label="Hide navigation" title="Hide navigation">☰</button><button class="control enlarge-toggle" id="enlarge" type="button" aria-pressed="false" aria-label="Enlarge presentation" title="Enlarge presentation">⛶</button>
+    <nav class="step-nav" id="slide-navigation" aria-label="Presentation sections"></nav>
     <div class="content">
-      <aside class="explain" aria-live="polite">
+      <aside class="explain" aria-live="polite" tabindex="0" aria-label="Slide explanation">
         <div class="phase" id="phase"></div>
         <h2 id="heading"></h2>
         <p class="description" id="description"></p>
@@ -615,7 +774,7 @@ h2 { font-size: 27px; }
       </div>
     </div>
     <footer class="foot">
-      <span>Illustrative example · Colors, values, and components are not verified Komodo specifications</span>
+      <div class="presentation-toolbar"><div class="toolbar-actions"><div class="presentation-controls"><button class="control" id="presentation-back" type="button">← Back</button><button class="control primary" id="presentation-play" type="button">▶ Play animation</button><button class="control" id="presentation-next" type="button">Next →</button><button class="control" id="presentation-export-pptx" type="button">↓ Export PowerPoint</button></div></div></div>
       <span class="progress"><span id="counter">1 / 7</span><span class="bar"><span id="bar"></span></span></span>
     </footer>
   </section>
@@ -627,6 +786,7 @@ h2 { font-size: 27px; }
     <footer class="build-footer"><div class="build-progress" id="build-progress" aria-label="Animation progress"></div><div><button class="control" id="build-replay" type="button">↻ Replay</button><button class="control primary" id="build-done" type="button">Back to presentation</button></div></footer>
   </div>
 </dialog>
+<script src="pptxgen.bundle.js"></script>
 <script>
 const steps = [
   {
@@ -659,13 +819,15 @@ const steps = [
     connectionTitle: "What happens next",
     connection: "Components use these shared values to create a consistent look and feel.",
     visual: `<div class="token-showcase"><div class="token-callout-list"><div class="token-callout"><strong>What they control</strong>Tokens define shared visual values.</div><div class="token-callout"><strong>Figma connection</strong>Values can connect to Figma variables.</div><div class="token-callout"><strong>Why tokens matter</strong>Shared names keep designs and code consistent.</div></div><div class="token-set">
-      <div class="token arrive"><small>Color</small><div class="swatches"><span class="swatch" style="background:#d43328"></span><span class="swatch" style="background:#171717"></span><span class="swatch" style="background:#f1efec"></span></div><div class="token-caption">Primary, text, surface</div></div>
-      <div class="token arrive"><small>Typography</small><div class="big-type">Aa</div><div class="token-caption">Type size and weight</div></div>
-      <div class="token arrive"><small>Spacing</small><div class="spacing"><span style="height:8px"></span><span style="height:15px"></span><span style="height:23px"></span><span style="height:30px"></span></div><div class="token-caption">A consistent spacing scale</div></div>
-      <div class="token arrive"><small>Radius</small><div class="radius-demo"></div><div class="token-caption">Corner shape</div></div>
-      <div class="token arrive"><small>Border</small><div class="token-sample-border"></div><div class="token-caption">Outline width and color</div></div>
-      <div class="token arrive"><small>Shadow</small><div class="token-sample-shadow"></div><div class="token-caption">Elevation and depth</div></div>
-      <div class="token-example"><span>Illustrative example</span><code>spacing.medium</code> → <code>16px</code> → <span>card padding</span></div>
+      <div class="token arrive"><small>Color</small><div class="swatches"><span class="swatch" style="background:#d43328"></span><span class="swatch" style="background:#171717"></span><span class="swatch" style="background:#f1efec"></span></div><div class="token-caption"><code>color.text.primary</code> → #171717</div></div>
+      <div class="token arrive"><small>Typography</small><div class="big-type">Aa</div><div class="token-caption"><code>font.size.body</code> → 16px</div></div>
+      <div class="token arrive"><small>Spacing</small><div class="spacing"><span style="height:8px"></span><span style="height:15px"></span><span style="height:23px"></span><span style="height:30px"></span></div><div class="token-caption"><code>spacing.medium</code> → 16px</div></div>
+      <div class="token arrive"><small>Radius</small><div class="radius-demo"></div><div class="token-caption"><code>radius.small</code> → 4px</div></div>
+      <div class="token arrive"><small>Border</small><div class="token-sample-border"></div><div class="token-caption"><code>border.width</code> → 1px</div></div>
+      <div class="token arrive"><small>Shadow</small><div class="token-sample-shadow"></div><div class="token-caption"><code>shadow.offset</code> → 4px</div></div>
+      <div class="token arrive"><small>Line height</small><div class="big-type">Aa</div><div class="token-caption"><code>line-height.body</code> → 1.5</div></div>
+      <div class="token arrive"><small>Opacity</small><div class="swatches"><span class="swatch" style="background:#d43328;opacity:.5"></span></div><div class="token-caption"><code>opacity.disabled</code> → 50%</div></div>
+      <div class="token arrive"><small>Focus ring</small><div class="token-sample-border" style="outline:3px solid #d43328;outline-offset:3px"></div><div class="token-caption"><code>focus.width</code> → 3px</div></div>
     </div></div>`
   },
   {
@@ -679,9 +841,7 @@ const steps = [
       <div class="theme-example arrive"><div class="theme-header fisher-theme"><span class="theme-part">Header</span>Fisher Scientific</div><div class="theme-preview"><span class="theme-part theme-part-text">Text</span><div class="theme-line theme-line-accent fisher-theme"></div><div class="theme-line"></div><div class="theme-line short"></div><span class="theme-part theme-part-button">Button</span><div class="theme-button fisher-theme">Continue</div></div><strong>FisherSci.com theme</strong></div>
       <div class="theme-example theme-example-dark arrive"><div class="theme-header dark-theme"><span class="theme-part">Header</span>Application</div><div class="theme-preview"><span class="theme-part theme-part-text">Text</span><div class="theme-line theme-line-accent dark-theme"></div><div class="theme-line"></div><div class="theme-line short"></div><span class="theme-part theme-part-button">Button</span><div class="theme-button dark-theme">Continue</div></div><strong>Dark theme</strong></div>
       <div class="theme-example theme-example-light arrive"><div class="theme-header light-theme"><span class="theme-part">Header</span>Application</div><div class="theme-preview"><span class="theme-part theme-part-text">Text</span><div class="theme-line theme-line-accent light-theme"></div><div class="theme-line"></div><div class="theme-line short"></div><span class="theme-part theme-part-button">Button</span><div class="theme-button light-theme">Continue</div></div><strong>Light theme</strong></div>
-    </div><div class="theme-code"><p>Apply a theme by wrapping your application or page in <code>KomodoTheme</code>.</p><pre><code>&lt;KomodoTheme theme="foundry"&gt;
-  &lt;ResearchWorkspaceTemplate /&gt;
-&lt;/KomodoTheme&gt;</code></pre></div></div>`
+    </div></div>`
   },
   {
     label: "Reusable building blocks",
@@ -747,24 +907,86 @@ function browser(mode, variant = false) {
     </div>
   </div>`;
 }
+// The initiative narrative leads; the original walkthrough remains available as supporting detail.
+const initiative = [
+  { nav:"Title", label:"Universal UI · UX initiative", title:"Universal UI", description:"A UX initiative for a more connected, consistent, and accessible digital experience.", connectionTitle:"The conversation", connection:"Explore the opportunity, the UX approach, and the shared building blocks that support connected experiences.", cards:[["Vision","One connected experience","Help customers move confidently across digital products."],["Approach","Shared where it matters","Bring teams together around patterns that support real workflows."]] },
+  { nav:"Opportunity", label:"01 · The opportunity", title:"Make every interaction feel connected", description:"Customers move between digital experiences to complete their work. Differences in navigation, language, and interaction can make those transitions harder to learn and use.", connectionTitle:"Ground this in evidence", connection:"Validate the highest-friction journeys with customer research, support insights, and product teams.", cards:[["Customers","Recognize familiar patterns","Predictable interactions help people focus on their task."],["Teams","Build on shared decisions","Reusable patterns can reduce duplicated design and development work."],["Accessibility","Design for more people","Consider accessibility throughout the journey, not only in individual components."],["Opportunity","Connect the experience","Identify where alignment helps and where workflows need flexibility."],["Pilot measurement","Evidence of business and team impact","Establish a baseline for task success, accessibility findings, duplicated components, time spent rebuilding patterns, and adoption. Compare results as the pilot progresses."]] },
+  { nav:"Principles", label:"02 · The principles", title:"A shared experience, built for real workflows", description:"Universal UI is a proposed approach to more consistent, accessible experiences across digital products, supported by shared UX patterns and components.", connectionTitle:"Design for both", connection:"Align the moments customers recognize while preserving meaningful differences between brands and workflows.", cards:[["Consistent","Familiar across products","Use shared language, navigation, and interaction patterns so customers can apply what they learn across experiences. Align the moments that support a task without forcing every screen to look identical."],["Flexible","Fit the task","Use shared foundations while allowing product teams to address distinct workflows, content, and brand needs. Make variations intentional and document when they are appropriate."],["Accessible","Inclusive by design","Build accessibility into design and implementation from the start. Test shared components and complete journeys with assistive technologies and people with different needs."],["Evidence-led","Learn and improve","Prioritize patterns using customer research, product insights, and team feedback. Measure outcomes, revisit assumptions, and improve the system as needs change."]] },
+  { nav:"UX role", label:"03 · The UX contribution", title:"From customer insight to shared patterns", description:"UX connects research, interaction design, content, and accessibility to define reusable solutions that serve real customer needs.", connectionTitle:"Working together", connection:"UX, product, and engineering share decisions from discovery through implementation and iteration.", cards:[["Listen","Understand needs","Study customer goals, pain points, and differences across contexts."],["Define","Set the direction","Translate evidence into principles, journeys, and shared patterns."],["Design","Create reusable solutions","Develop foundations, components, templates, and guidance with partners."],["Validate","Test and improve","Evaluate accessibility and usability in real product experiences."]] },
+  { nav:"Journey", label:"03 · A connected journey", title:"Design the experience across touchpoints", description:"A journey view makes the value visible: familiar wayfinding and consistent interactions can support a customer as they move between experiences.", connectionTitle:"Illustrative example", connection:"Replace this proposed journey with a validated customer workflow and before-and-after evidence.", cards:[["1 · Find","Locate a product","Familiar navigation and search help customers orient themselves."],["2 · Evaluate","Compare options","Consistent information and actions support confident decisions."],["3 · Act","Complete the task","Predictable forms and feedback guide the next step."],["4 · Continue","Return to the work","Clear status and language help customers pick up where they left off."]] },
+  { nav:"How we work", label:"04 · Operating together", title:"A system that teams can use and shape", description:"Shared foundations, patterns, and components need an operating model as well as a library. UX partners with product and engineering to make decisions visible and maintainable.", connectionTitle:"Proposed operating model", connection:"Confirm ownership, contribution paths, review expectations, and release practices with participating teams.", cards:[["Discover","Prioritize together","Choose opportunities based on customer needs and product impact."],["Build","Design and implement","Align design guidance with coded components and test in context."],["Contribute","Make change visible","Provide a clear path for requests, feedback, and shared decisions."],["Maintain","Evolve responsibly","Assign ownership and communicate changes to adopting teams."]] },
+];
+initiative.splice(initiative.findIndex(item => item.nav === "UX role"), 1);
+const opportunity = initiative.find(item => item.nav === "Opportunity");
+opportunity.title = "Improve experiences across the platform";
+opportunity.description = "Customers use multiple products to complete their work. Shared patterns can help them navigate, act, and continue with confidence while helping teams deliver improvements more efficiently.";
+opportunity.connectionTitle = "Evidence to establish";
+opportunity.connection = "No customer or business results are established in this proposal. Validate these opportunities with research, support insights, usability findings, and participating product teams.";
+opportunity.cards = [["Customer experience","Make the platform easier to learn","Familiar navigation, language, and interactions can help customers move between product areas with less relearning."],["Customer outcomes","Help people complete their work","Clear actions, accessible patterns, and consistent feedback can reduce friction in important workflows."],["Team efficiency","Deliver improvements more efficiently","Shared components and decisions can reduce duplicated design, development, and maintenance across teams."],["Business impact","Scale quality across products","Reusable patterns can help teams extend improvements across the platform and focus investment on differentiated needs."]];
+const operatingModel = initiative.find(item => item.nav === "How we work");
+operatingModel.title = "Shared ownership from discovery to delivery";
+operatingModel.description = "Product, UX, engineering, and quality collaborate to prioritize, build, validate, and maintain shared solutions.";
+operatingModel.connection = "Confirm decision ownership, contribution paths, release practices, and the capacity each participating team can provide.";
+operatingModel.cards = [["UX","Understand and design","Research customer needs|Define journeys and interaction patterns|Test usability and accessibility"],["Product","Set direction","Prioritize customer outcomes|Align teams on scope|Measure impact"],["Engineering","Build and integrate","Implement shared components|Connect systems and workflows|Maintain performance"],["Quality","Validate the experience","Test end-to-end journeys|Check accessibility and regressions|Share findings with the team"]];
+const journey = initiative.splice(initiative.findIndex(item => item.nav === "Journey"), 1)[0];
+journey.nav = "Solution";
+journey.label = "02 · The solution";
+journey.title = "One connected experience";
+journey.description = "Universal UI brings shared design decisions, reusable patterns, and an inclusive approach together across digital products.";
+journey.connectionTitle = "Built together";
+journey.connection = "UX, product, engineering, and quality shape and validate the system in real customer workflows.";
+journey.cards = [["Foundations","Shared design language","Define tokens for color, type, and spacing|Support brand themes across products|Keep design and code aligned"],["Patterns","Familiar interactions","Reuse components and common behaviors|Provide guidance for real workflows|Preserve flexibility where needs differ"],["Accessibility","Inclusive experiences","Design accessibility into shared patterns|Test complete journeys with users|Address findings as the system evolves"],["Adoption","A system teams can use","Provide design and coded resources|Create clear contribution and support paths|Measure use and improve with feedback"]];
+initiative.splice(2, 0, journey);
+initiative.splice(3, 0, {nav:"Example", label:"03 · Cart and checkout example", title:"A familiar journey across both sites", description:"An intentionally exaggerated example compares cart and checkout experiences on ThermoFisher.com and FisherSci.com before and after shared patterns.", connectionTitle:"Customer value", connection:"Familiar actions, clear totals, and useful feedback could help customers shop confidently on either site. Validate this with customers and both product teams.", cards:[["Before","Two unfamiliar experiences","Each site uses different cart actions, checkout layouts, and error messages|Order details are presented differently or disappear between steps|Teams maintain separate versions of similar patterns"],["After","Familiar across both sites","Shared actions, layouts, and feedback help customers recognize each step|A consistent order summary stays visible through checkout on each site|Shared components support each brand without replacing site-specific rules"]]});
+initiative.push({nav:"Success measures", label:"06 · Proposed pilot", title:"Pilot a more familiar checkout", description:"Propose a focused cart-to-checkout pilot across ThermoFisher.com and FisherSci.com, with a shared baseline and a decision at the end.", connectionTitle:"Decision requested", connection:"Confirm whether both product teams can participate, nominate leads, and agree on pilot timing.", cards:[["Journey & products ✓","Cart to checkout","Compare the journey on ThermoFisher.com and FisherSci.com, from reviewing a cart through placing an order."],["Pilot scope ✓","Shared patterns in context","Explore order summaries, primary actions, form states, and error feedback; retain each site's brand and business rules."],["Proposed owners","A cross-functional team","Product leads prioritize; UX leads research and design; engineering leads feasibility and implementation; quality and accessibility partners validate."],["Illustrative timeline","Eight-week pilot","Weeks 1–2: establish a baseline. Weeks 3–5: design and build. Weeks 6–8: test, review findings, and decide next steps."]]});
+const pilotProposal = initiative.splice(initiative.findIndex(item => item.nav === "Success measures"), 1)[0];
+const exampleSlide = initiative.find(item => item.nav === "Example");
+exampleSlide.nav = "Example";
+exampleSlide.pilot = pilotProposal.cards;
+exampleSlide.connectionTitle = "Decision requested";
+exampleSlide.connection = "Confirm participation from both product teams, nominate leads, and agree on pilot timing. The journey and scope are complete.";
+function initiativeVisual(item) {
+  if (item.nav === "Title") return `<div class="title-layout"><div class="title-screen-intro"><h2>${item.title}</h2><p>${item.description}</p></div><svg class="title-illustration" viewBox="0 0 720 460" role="img" aria-label="Three interface windows connected to a shared foundation"><g fill="none" stroke="#b52d24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M130 210v31c0 22 16 35 37 35h145c26 0 48 15 48 43 M360 210v109 M590 210v31c0 22-16 35-37 35H408c-26 0-48 15-48 43"/><path d="M360 319v16"/><path fill="#f4dcd7" d="M100 337h520c15 0 25 6 33 18l38 59c8 13 0 25-16 25H45c-16 0-24-12-16-25l38-59c8-12 18-18 33-18z"/><g fill="#fff"><rect x="30" y="35" width="200" height="175" rx="13"/><rect x="260" y="35" width="200" height="175" rx="13"/><rect x="490" y="35" width="200" height="175" rx="13"/></g><g fill="#b52d24" stroke="none"><path d="M43 35h174a13 13 0 0 1 13 13v13H30V48a13 13 0 0 1 13-13z"/><path d="M273 35h174a13 13 0 0 1 13 13v13H260V48a13 13 0 0 1 13-13z"/><path d="M503 35h174a13 13 0 0 1 13 13v13H490V48a13 13 0 0 1 13-13z"/></g><g fill="#fff" stroke="none"><circle cx="49" cy="48" r="4"/><circle cx="64" cy="48" r="4"/><circle cx="79" cy="48" r="4"/><circle cx="279" cy="48" r="4"/><circle cx="294" cy="48" r="4"/><circle cx="309" cy="48" r="4"/><circle cx="509" cy="48" r="4"/><circle cx="524" cy="48" r="4"/><circle cx="539" cy="48" r="4"/></g><g fill="#f4dcd7" stroke="none"><rect x="48" y="80" width="164" height="58" rx="7"/><rect x="48" y="150" width="76" height="39" rx="7"/><rect x="136" y="150" width="76" height="39" rx="7"/><rect x="278" y="82" width="164" height="27" rx="7"/><rect x="278" y="121" width="164" height="27" rx="7"/><rect x="278" y="160" width="164" height="27" rx="7"/><rect x="508" y="82" width="84" height="105" rx="7"/><rect x="603" y="82" width="69" height="47" rx="7"/><rect x="603" y="140" width="69" height="47" rx="7"/></g><g fill="#fff"><circle cx="130" cy="210" r="6"/><circle cx="360" cy="210" r="6"/><circle cx="590" cy="210" r="6"/><circle cx="360" cy="337" r="6"/></g><g stroke="none" fill="#b52d24"><circle cx="180" cy="388" r="27"/><rect x="275" y="371" width="130" height="34" rx="17"/></g><rect x="480" y="357" width="130" height="62" rx="9" fill="#fff"/><g fill="#f4dcd7" stroke="none"><rect x="494" y="372" width="100" height="10" rx="5"/><rect x="494" y="391" width="65" height="10" rx="5"/></g></g></svg></div>`;
+  if (item.nav === "Principles") return `<div class="initiative-cards">${item.cards.map(([tag,title,body]) => `<div class="initiative-card"><small>${tag}</small><strong>${title}</strong><p>${body}</p></div>`).join("")}<div class="initiative-note">Proposed framing for discussion; confirm scope, evidence, and ownership with initiative partners.</div></div>`;
+  if (item.nav === "Example") return `<div class="before-after">${item.cards.map(([tag,title,body], i) => `<section class="before-after-column"><small>${tag}</small><h3>${title}</h3><div class="before-after-sample">${i === 0 ? `<strong>ThermoFisher.com → FisherSci.com</strong>“Proceed” → “Submit request”<br>Quantity: stepper → separate edit page<br>Order summary: sidebar → hidden until review<br>Error: inline warning → generic alert` : `<strong>ThermoFisher.com & FisherSci.com</strong>“Continue to checkout” → “Place order”<br>Quantity: familiar controls on both sites<br>Order summary: visible throughout checkout<br>Error: clear message beside the field on both sites`}</div><ul>${body.split("|").map(point => `<li>${point}</li>`).join("")}</ul></section>`).join("")}<div class="before-after-note"><strong>Shared:</strong> navigation, controls, form states, feedback, and order-summary pattern. <strong>Site-specific:</strong> brand, catalog, pricing, fulfillment, and business rules. Intentionally exaggerated illustration, not observed findings.</div><div class="pilot-summary"><h3>Proposed pilot</h3>${item.pilot.map(([tag,title,body]) => `<div><strong>${tag} · ${title}</strong><p>${body}</p></div>`).join("")}</div></div>`;
+  if (item.nav === "Pilot measures") return `<div class="narrative-flow"><div class="measure-row">${item.cards.map(([tag,title,body]) => `<div><small>${tag}</small><strong>${title}</strong><p>${body}</p></div>`).join("")}</div><div class="flow-caption">Proposed measures · Baselines and targets to be agreed with pilot partners.</div></div>`;
+  const caption = item.nav === "Opportunity" ? "Proposed opportunities · Validate customer and business impact across product areas." : item.nav === "Solution" ? "Proposed solution · Validate the approach with customers and participating teams." : item.nav === "How we work" ? "Proposed contributions · Confirm responsibilities with participating teams." : "Journey and scope completed · Confirm participation, named owners, capacity, and timing with both teams.";
+  return `<div class="narrative-flow"><div class="flow-track">${item.cards.map(([tag,title,body]) => `<div class="flow-step"><small>${tag}</small><strong>${title}</strong>${["Solution", "How we work"].includes(item.nav) ? `<ul>${body.split("|").map(point => `<li>${point}</li>`).join("")}</ul>` : `<p>${body}</p>`}</div>`).join("")}</div><div class="flow-caption">${caption}</div></div>`;
+}
+const detailSteps = steps.slice();
+steps.splice(0, steps.length, ...initiative.map(item => ({...item, visual:initiativeVisual(item)})), ...detailSteps);
+const navLabels = [...initiative.map(item => item.nav), "Design System", "Tokens", "Themes", "Components", "Grid", "Template", "Page"];
+document.querySelector(".step-nav").innerHTML = navLabels.map((label, i) => `<button class="step" data-step="${i}"><span class="num">${i + 1}</span> ${label}</button>`).join("");
+document.querySelectorAll(".step-nav .step").forEach((button, i) => {
+  if (["Example", "How we work"].includes(navLabels[i])) {
+    const divider = document.createElement("span");
+    divider.className = "nav-divider";
+    divider.setAttribute("aria-hidden", "true");
+    button.after(divider);
+  }
+});
+let visionPage = 0;
 let current = 0;
 let timer = null;
 const $ = id => document.getElementById(id);
 function render() {
   const s = steps[current];
+  document.querySelector(".content").classList.toggle("title-screen", current === 0);
+  document.querySelector(".content").classList.toggle("vision-screen", s.nav === "Principles");
   const explanation = document.querySelector(".explain");
+  explanation.scrollTop = 0;
   explanation.classList.remove("step-building");
   void explanation.offsetWidth;
   explanation.classList.add("step-building");
-  $("phase").textContent = `Step ${current + 1} of ${steps.length}`;
+  $("phase").textContent = current < initiative.length ? `Initiative · ${current + 1} of ${initiative.length}` : `Supporting detail · ${current - initiative.length + 1} of ${detailSteps.length}`;
   $("heading").textContent = s.title;
   $("description").textContent = s.description;
   $("connection-title").textContent = s.connectionTitle;
   $("connection-text").textContent = s.connection;
   $("visual-label").textContent = s.label;
-  $("overview-details").hidden = current !== 0;
-  $("token-details").hidden = current !== 1;
-  $("theme-details").hidden = current !== 2;
+  $("overview-details").hidden = current !== initiative.length;
+  $("token-details").hidden = current !== initiative.length + 1;
+  $("theme-details").hidden = current !== initiative.length + 2;
   $("scene").innerHTML = s.visual;
   $("counter").textContent = `${current + 1} / ${steps.length}`;
   $("bar").style.width = `${((current + 1) / steps.length) * 100}%`;
@@ -773,6 +995,8 @@ function render() {
     if (i === current) el.setAttribute("aria-current", "step");
     else el.removeAttribute("aria-current");
   });
+  $("presentation-back").disabled = current === 0;
+  $("presentation-next").disabled = current === steps.length - 1;
   $("back").disabled = current === 0;
   $("back").style.opacity = current === 0 ? ".45" : "1";
 }
@@ -815,14 +1039,84 @@ function startBuild() {
   clearInterval(buildTimer); buildStep = 0; $("build-visual").innerHTML = buildMarkup; renderBuild();
   buildTimer = setInterval(() => { if (buildStep < buildSteps.length - 1) { buildStep++; renderBuild(); } else { clearInterval(buildTimer); buildTimer = null; } }, 4000);
 }
+function setPresentationMode(enabled) {
+  document.body.classList.toggle("presenting", enabled);
+  $("enlarge").textContent = enabled ? "⤡" : "⛶";
+  $("enlarge").setAttribute("aria-label", enabled ? "Exit presentation" : "Enlarge presentation");
+  $("enlarge").title = enabled ? "Exit presentation" : "Enlarge presentation";
+  $("enlarge").setAttribute("aria-pressed", String(enabled));
+}
+$("enlarge").addEventListener("click", () => setPresentationMode(!document.body.classList.contains("presenting")));
+$("nav-toggle").addEventListener("click", () => {
+  const navigation = $("slide-navigation");
+  navigation.hidden = !navigation.hidden;
+  document.querySelector(".stage").classList.toggle("nav-collapsed", navigation.hidden);
+  $("nav-toggle").setAttribute("aria-expanded", String(!navigation.hidden));
+  const label = navigation.hidden ? "Show navigation" : "Hide navigation";
+  $("nav-toggle").setAttribute("aria-label", label);
+  $("nav-toggle").title = label;
+});
+$("presentation-back").addEventListener("click", () => $("back").click());
+$("presentation-next").addEventListener("click", () => $("next").click());
+$("presentation-play").addEventListener("click", () => $("play").click());
+async function exportPowerPoint() {
+  const buttons = [$('export-pptx'), $('presentation-export-pptx')];
+  buttons.forEach(button => { button.disabled = true; button.textContent = 'Preparing PowerPoint…'; });
+  try {
+    const pptx = new PptxGenJS();
+    pptx.layout = 'LAYOUT_WIDE';
+    pptx.author = 'Universal UI';
+    pptx.subject = 'Universal UI presentation';
+    pptx.title = 'One connected experience';
+    for (const [index, step] of steps.entries()) {
+      const slide = pptx.addSlide();
+      slide.background = { color: 'F8F7F4' };
+      slide.addText(step.label.toUpperCase(), { x:.55, y:.35, w:12, h:.25, fontFace:'Arial', fontSize:10, bold:true, color:'A52D24', margin:0 });
+      slide.addText(step.title, { x:.55, y:.85, w:12.2, h:.65, fontFace:'Arial', fontSize:30, bold:true, color:'202020', margin:0, fit:'shrink' });
+      slide.addText(step.description, { x:.55, y:1.65, w:12, h:.75, fontFace:'Arial', fontSize:16, color:'555550', margin:0, fit:'shrink', valign:'top' });
+      let blocks = step.pilot ? [...step.cards, ...step.pilot] : step.cards;
+      if (!blocks && index >= initiative.length) {
+        const container = document.createElement('div');
+        container.innerHTML = step.visual;
+        const selector = '.token-callout, .token, .theme-example, .component-callout, .component, .responsive-grid-row, .themed-cart';
+        blocks = Array.from(container.querySelectorAll(selector)).map(element => ['', (element.innerText || element.textContent).replace(/\s+/g, ' ').trim(), '']).filter(block => block[1]);
+      }
+      if (index === 0) blocks = [];
+      if (blocks && blocks.length) {
+        const shown = blocks.slice(0, 8);
+        const columns = Math.min(shown.length, 4);
+        const rows = Math.ceil(shown.length / columns);
+        const gap = .15, width = (12.2 - gap * (columns - 1)) / columns;
+        const height = Math.min(1.7, 3.45 / rows);
+        shown.forEach(([tag, title, body], i) => {
+          const x = .55 + (i % columns) * (width + gap), y = 2.65 + Math.floor(i / columns) * (height + .16);
+          slide.addShape(pptx.ShapeType.rect, { x, y, w:width, h:height, rectRadius:0, line:{ color:'D2CBC5', width:1 }, fill:{ color:'FFFFFF' } });
+          if (tag) slide.addText(tag.toUpperCase(), { x:x+.14, y:y+.12, w:width-.28, h:.2, fontFace:'Arial', fontSize:9, bold:true, color:'B52D24', margin:0, fit:'shrink' });
+          slide.addText(title || '', { x:x+.14, y:y+.39, w:width-.28, h:.38, fontFace:'Arial', fontSize:14, bold:true, color:'202020', margin:0, fit:'shrink' });
+          if (body) slide.addText(body.replace(/\|/g, '\n• '), { x:x+.14, y:y+.83, w:width-.28, h:height-.95, fontFace:'Arial', fontSize:10, color:'555550', margin:0, fit:'shrink', valign:'top' });
+        });
+      }
+      if (step.connection) slide.addText(`${step.connectionTitle}: ${step.connection}`, { x:.55, y:6.52, w:11.8, h:.48, fontFace:'Arial', fontSize:11, color:'666660', margin:0, fit:'shrink' });
+      slide.addText(`${index + 1} / ${steps.length}`, { x:12.1, y:7.12, w:.7, h:.2, fontFace:'Arial', fontSize:9, color:'777770', align:'right', margin:0 });
+    }
+    await pptx.writeFile({ fileName:'universal-ui-presentation.pptx' });
+  } catch (error) {
+    console.error('PowerPoint export failed:', error);
+    alert('Could not export the PowerPoint. Please try again.');
+  } finally {
+    buttons.forEach(button => { button.disabled = false; button.textContent = '↓ Export PowerPoint'; });
+  }
+}
+$("export-pptx").addEventListener("click", exportPowerPoint);
+$("presentation-export-pptx").addEventListener("click", exportPowerPoint);
 $("play").addEventListener("click", () => { stop(); buildDialog.showModal(); startBuild(); });
 $("build-replay").addEventListener("click", startBuild);
 $("build-close").addEventListener("click", () => buildDialog.close());
 $("build-done").addEventListener("click", () => buildDialog.close());
-buildDialog.addEventListener("close", () => { clearInterval(buildTimer); buildTimer = null; $("play").focus(); });
+buildDialog.addEventListener("close", () => { clearInterval(buildTimer); buildTimer = null; (document.body.classList.contains("presenting") ? $("presentation-play") : $("play")).focus(); });
 $("back").addEventListener("click", () => { stop(); current = Math.max(0, current - 1); render(); });
 $("next").addEventListener("click", () => { stop(); current = Math.min(steps.length - 1, current + 1); render(); });
-document.addEventListener("keydown", event => { if (buildDialog.open || ["INPUT", "TEXTAREA"].includes(event.target.tagName)) return; if (event.key === "ArrowRight") $("next").click(); if (event.key === "ArrowLeft") $("back").click(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape" && !buildDialog.open && document.body.classList.contains("presenting")) { setPresentationMode(false); $("enlarge").focus(); return; } if (buildDialog.open || ["INPUT", "TEXTAREA"].includes(event.target.tagName)) return; if (event.key === "ArrowRight") $("next").click(); if (event.key === "ArrowLeft") $("back").click(); });
 document.querySelectorAll(".step").forEach(el => el.addEventListener("click", () => {
   stop(); current = Number(el.dataset.step); render();
 }));
